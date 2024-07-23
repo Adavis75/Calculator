@@ -1,14 +1,14 @@
 "use strict"
 const input = document.querySelector('.input')
-const result = document.querySelector(' .result')
-const deletebtn = document.querySelector(' .delete')
+const result = document.querySelector('.result')
+const deletebtn = document.querySelector('.delete')
 const keys = document.querySelectorAll('.bottom span')
 
 let operation = ""
 let answer 
-let decimslAdded = false
+let decimalAdded = false
 
-const operators = [ '+', '-','x','/']
+const operators = ['+','-','x','/']
 
 function handleKeyPress(e){
     const key = e.target.dataset.key
@@ -18,8 +18,8 @@ function handleKeyPress(e){
             return
         }
 
-        if (key === '.'&& decicamalAdded){
-
+        if (key === '.'&& decimalAdded){
+            return
         }
 
         if (operators.indexOf(key) !== -1){
@@ -32,25 +32,28 @@ function handleKeyPress(e){
             return
         }
 
-        if (operation.length === 0 && operators.indexOf(key) !== -1) {
+        if (operators.length === 0 && operators.indexOf(key) !== -1) {
             input.innerHTML = operation 
             return
         
         }
-        
+
         if (operation.indexOf(lastChar) !== -1 && operators.indexOf(key) !== -1) {
-             operation = operation.replace(/.$/,key)
-             input.innerHTML = operation
-             return
-        }
+            input.innerHTML = operation
+            return
+       }
+        
+    if (key){
+    if (key == '.')decimalAdded =true
+    operation  += key 
+    input.innerHTML=operation
+    return
+}
 
-
-
-
-
-    
     }
 
     keys.forEach(key => {
-        key.addEventListener(' click', handelkeypress)
-     } 
+        key.addEventListener('click', handleKeyPress)
+     })
+
+     
